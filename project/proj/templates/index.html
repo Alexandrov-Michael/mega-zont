@@ -1,0 +1,58 @@
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
+    <meta charset="UTF-8">
+    {% render_block "css" %}
+</head>
+<body>
+{% cms_toolbar %}
+<div class="container">
+    <div id="header">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+{#                        <li class="active">#}
+{#                            <a href="#">Главная</a>#}
+{#                        </li>#}
+{#                        <li><a href="#">Купить</a></li>#}
+{#                        <li><a href="#">Контакты</a></li>#}
+{#                        <li><a href="#">Опт</a></li>#}
+                        {% show_menu 0 0 %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="contact">
+            <h1>Товары-тов</h1>
+            <address><span class='telefon'>(812) 920-62-12</span></address>
+        </div>
+        <div class="slider">
+            {% placeholder 'slider' %}
+        </div>
+    </div><!-- header -->
+    <div id="main" class='well'>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="content">
+{#                    <h1>Тест h1!!!</h1>#}
+{#                    <p>Описание описание описание</p>#}
+{#                    <a href="#" class='btn btn-primary btn-large'>#}
+{#                        <i class="icon-shopping-cart icon-white"></i> Купить#}
+{#                    </a>#}
+                    {% placeholder "content" %}
+                </div>
+            </div>
+        </div>
+    </div><!-- main -->
+    <div id="footer"></div><!-- footer -->
+</div>
+<script src="{{ MEDIA_URL }}js/bootstrap.min.js"></script>
+{% render_block "js" %}
+</body>
+</html>

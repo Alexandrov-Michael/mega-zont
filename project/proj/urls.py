@@ -5,7 +5,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^change_cuponator/$', 'options.views.changekuponatorstatusview'),
+    url(r'^change_cuponator/$', 'options.views.ChangeKuponatorStatusView'),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/filebrowser/', include('filebrowser.urls')),

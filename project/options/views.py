@@ -1,19 +1,15 @@
 # -*- coding:utf-8 -*-
-from django.http import Http404
 
+from django.http import Http404
 from proj.utils.mixin import JSONResponseMixin
 from django.views.generic.base import View
 from models import Options
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 
 class ChangeKuponatorStatusView(JSONResponseMixin, View):
     """
     Ajax Представления для изменения статуса настройки купонатор
     """
-
-
 
     def get_context_data(self, **kwargs):
         """
@@ -39,11 +35,14 @@ class ChangeKuponatorStatusView(JSONResponseMixin, View):
 
     def check_for_admin(self):
         user = self.request.user
-        if not user.pk == 1:
+        try:
+            pk = user.pk
+        except AttributeError:
+            raise Http404
+        if not pk == 1:
             raise Http404
 
 
-
-changekuponatorstatusview = ChangeKuponatorStatusView.as_view()
+ChangeKuponatorStatusView = ChangeKuponatorStatusView.as_view()
 
 

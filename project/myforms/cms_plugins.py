@@ -20,7 +20,7 @@ class MyFormPlugin(CMSPluginBase):
     """
     model = FormLogPlugin
     name  = u'Пользовательские формы'
-    render_template = "myform.html"
+    render_template = "plugins/myform.html"
 
     def render(self, context, instance, placeholder):
         return render(context, instance, placeholder)

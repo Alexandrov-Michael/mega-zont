@@ -9,9 +9,13 @@ from cms.plugin_pool import plugin_pool
 from models import ClearHtml
 
 class ClearHtmlPlugin(CMSPluginBase):
+    """
+    Плагин для отображения чистого html, для обхода
+    проверки tinymce
+    """
     model = ClearHtml
     name = u'Чистый html'
-    render_template = "clear_html.html"
+    render_template = "plugins/clear_html.html"
 
     def render(self, context, instance, placeholder):
         context['instance'] = instance

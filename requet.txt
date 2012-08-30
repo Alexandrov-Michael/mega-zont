@@ -9,13 +9,10 @@ django-classy-tags==0.3.4.1
 django-cms==2.3.1
 django-debug-toolbar==0.9.4
 django-extensions==0.9
-django-filebrowser-no-grappelli==3.1.1
-django-filer==0.9b1
 django-mptt==0.5.2
 django-polymorphic==0.2
 django-sekizai==0.6.1
 django-tinymce==1.5.1b2
-easy-thumbnails==1.0.3
 html5lib==0.95
 psycopg2==2.4.5
 wsgiref==0.1.2

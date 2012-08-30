@@ -1,0 +1,56 @@
+{% load i18n sekizai_tags %}
+
+
+<form action="" method="POST" class="form-horizontal" name="{{ form.get_name }}">{% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% for field in form %}
+        <div class="control-group
+        {% if field.errors %}
+            error
+        {% endif %}
+        ">
+            <label class="control-label" for="id_{{ field.name }}">{{ field.label }}:</label>
+            <div class="controls">
+                {{ field }}
+                {% if field.errors %}
+                    <span class="help-inline">
+                        {% for error in field.errors %}
+                        <strong>{{ error|escape }}</strong><br>
+                        {% endfor %}
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class='btn btn-primary'>Добавить</button>
+        </div>
+    </div>
+</form>
+
+
+
+{% addtoblock "js" %}
+    <script type="text/javascript">
+        function ShowMessage()
+        {
+            var text = '{{ message }}';
+            if(text != 'None')
+            {
+                var message = $('#message');
+                message.append('<div class="alert alert-info one_message"><p>'+text+'</p></div>');
+                var last_div =  $('div:last-child', message);
+                last_div.fadeIn('slow');
+                setTimeout(function(){
+                    last_div.fadeOut('slow');
+                }, 4000);
+            }
+        }
+    $(document).ready(function(){
+        ShowMessage();
+    });
+    </script>
+{% endaddtoblock %}

@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 import os
+from platform import node
+
+
+HOST_NAME = node()
+HOSTER_NAME = 'zanzibar'
+
+
+
 gettext = lambda s: s
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -13,16 +21,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'zont',                      # Or path to database file if using sqlite3.
-        'USER': 'postgres',                      # Not used with sqlite3.
-        'PASSWORD': '0',                  # Not used with sqlite3.
-        'HOST': '192.168.1.6',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -61,17 +60,17 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '../../public_html/static/'))
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '../../public_html/static_dj/'))
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+
+dir_static = os.path.abspath(os.path.join(PROJECT_PATH, '../../public_html/static/'))
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    dir_static,
 )
 
 # List of finder classes that know how to find static files in
@@ -104,6 +103,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+    'myforms.middleware.ForceResponseMiddleware',
 )
 
 ROOT_URLCONF = 'proj.urls'
@@ -118,6 +118,10 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,14 +144,22 @@ INSTALLED_APPS = (
     'mptt',
     'menus',
     'sekizai',
-    'django_extensions',
-    'debug_toolbar',
     'cms.plugins.text',
+
+
+    'django_extensions',
+
     'bootstrap_tags',
+
     'filer',
     'easy_thumbnails',
+
     'cmsplugin_nivoslider',
     'tinymce',
+
+    'myforms',
+    'options',
+
 
 )
 
@@ -190,6 +202,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
+    'myforms.context_processor.messages',
     )
 
 
@@ -218,3 +231,21 @@ FILER_DEBUG = True
 TINYMCE_JS_URL = os.path.join(MEDIA_URL, 'js/tiny_mce/tiny_mce.js')
 TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, 'js/tiny_mce')
 TINYMCE_DEFAULT_CONFIG = {'theme': 'advanced','mode': 'textareas',}
+
+
+
+if HOST_NAME == HOSTER_NAME:
+    from settings_prod import *
+else:
+    from settings_dev import *
+
+
+
+# admin-tools
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+ADMIN_TOOLS_INDEX_DASHBOARD = 'proj.dashboard.CustomIndexDashboard'
+#ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'proj.dashboard.CustomAppIndexDashboard'
+
+
+TINYMCE_SPELLCHECKER=False

@@ -136,5 +136,5 @@ class EmailCounter(modules.DashboardModule):
 
     def __init__(self, *args, **kwargs):
         super(EmailCounter, self).__init__(*args, **kwargs)
-        self.template = 'EmailCounter.html'
+        self.template = 'dashboard/EmailCounter.html'
         self.counter = FormLog.objects.all().count()

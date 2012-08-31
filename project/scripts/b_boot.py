@@ -7,7 +7,11 @@
 
 import datetime
 from decimal import Decimal
+from cms.models.placeholdermodel import Placeholder
+from cms.models.pluginmodel import CMSPlugin
 from django.contrib.contenttypes.models import ContentType
+from django.utils.timezone import UTC
+
 
 def run():
     from bootstrap_tags.models import ClearHtml
@@ -17,7 +21,7 @@ def run():
     cmsplugin_clearhtml_1.position = 1
     cmsplugin_clearhtml_1.language = u'ru'
     cmsplugin_clearhtml_1.plugin_type = u'ClearHtmlPlugin'
-    cmsplugin_clearhtml_1.creation_date = datetime.datetime(2012, 8, 30, 11, 12, 9, 307947, tzinfo=<UTC>)
+    cmsplugin_clearhtml_1.creation_date = datetime.datetime(2012, 8, 30, 11, 12, 9, 307947, tzinfo=UTC)
     cmsplugin_clearhtml_1.level = 0
     cmsplugin_clearhtml_1.lft = 1
     cmsplugin_clearhtml_1.rght = 2

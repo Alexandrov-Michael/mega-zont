@@ -4,7 +4,7 @@ from platform import node
 
 
 HOST_NAME = node()
-HOSTER_NAME = 'zanzibar'
+HOSTER_NAME = 'vh13'
 
 
 

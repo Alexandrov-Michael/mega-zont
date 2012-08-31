@@ -17,18 +17,7 @@ def run():
 
     from django.contrib.auth.models import User
 
-    auth_user_1 = User()
-    auth_user_1.username = u'admin'
-    auth_user_1.first_name = u''
-    auth_user_1.last_name = u''
-    auth_user_1.email = u'a@a.ru'
-    auth_user_1.password = u'pbkdf2_sha256$10000$zcns7unj2mO3$CxjEuzz7EiEzCBcgVCaaC+/1Eor8Q/mqKY9oRGjji7U='
-    auth_user_1.is_staff = True
-    auth_user_1.is_active = True
-    auth_user_1.is_superuser = True
-    auth_user_1.last_login = datetime.datetime(2012, 8, 31, 11, 33, 6, 891369, tzinfo=utc)
-    auth_user_1.date_joined = datetime.datetime(2012, 8, 29, 11, 29, 31, 662519, tzinfo=utc)
-    auth_user_1.save()
+    auth_user_1 = User.objects.get(pk=1)
 
     from django.contrib.sessions.models import Session
 
